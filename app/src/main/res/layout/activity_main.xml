@@ -17,7 +17,7 @@
         android:layout_marginStart="87dp"
         android:layout_marginTop="252dp"
         android:text="GALLERY"
-        android:onClick="openCamera"/>
+        android:onClick="openGallery"/>
 
     <Button
         android:id="@+id/button2"
@@ -28,5 +28,6 @@
         android:layout_marginStart="91dp"
         android:layout_marginBottom="273dp"
         android:text="CAMERA"
-        android:onClick="openGallery"/>
+        android:onClick="openCamera"/>
+
 </RelativeLayout>
