@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ClearScanner</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
 </resources>
