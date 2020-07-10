@@ -277,9 +277,9 @@ JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getMagicColorBitmap
     Mat mbgra(info.height, info.width, CV_8UC4, pixels);
     Mat dst = mbgra.clone();
     // init our output image
-    float alpha = 1.9;
-    float beta = -80;
-    dst.convertTo(dst, -1, alpha, beta);
+    float alpha = 2.0;
+    float beta = -100;
+    dst.convertTo(dst, -2, alpha, beta);
 
     //get source bitmap's config
     jclass java_bitmap_class = (jclass)env->FindClass("android/graphics/Bitmap");
