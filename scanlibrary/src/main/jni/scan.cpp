@@ -279,7 +279,7 @@ JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getMagicColorBitmap
     // init our output image
     float alpha = 2.0;
     float beta = -100;
-    dst.convertTo(dst, -2, alpha, beta);
+    dst.convertTo(dst, -2, gama, beta);
 
     //get source bitmap's config
     jclass java_bitmap_class = (jclass)env->FindClass("android/graphics/Bitmap");
@@ -318,10 +318,11 @@ JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getBWBitmap
     // init our output image
     Mat dst = mbgra.clone();
 
-    cvtColor(mbgra, dst, CV_BGR2GRAY);
-//    float alpha = 2.2;
-//    float beta = 0;
-//    dst.convertTo(dst, -1, alpha, beta);
+//    cvtColor(mbgra, dst, CV_BGR2GRAY);
+    float alpha = 2.2;
+    float beta = 0;
+    float gama = 2.2;
+    dst.convertTo(dst, -1, gama, beta);
 
     threshold(dst,dst,0,255,THRESH_BINARY | THRESH_OTSU);
 
