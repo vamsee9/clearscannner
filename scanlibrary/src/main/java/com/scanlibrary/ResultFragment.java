@@ -30,6 +30,9 @@ public class ResultFragment extends Fragment {
     private Button MagicColorButton;
     private Button grayModeButton;
     private Button bwButton;
+    private Button rotanticButton;
+    private Button rotcButton;
+    private Bitmap rotoriginal;
     private Bitmap transformed;
     private static ProgressDialogFragment progressDialogFragment;
 
@@ -53,7 +56,17 @@ public class ResultFragment extends Fragment {
         grayModeButton.setOnClickListener(new GrayButtonClickListener());
         bwButton = (Button) view.findViewById(R.id.BWMode);
         bwButton.setOnClickListener(new BWButtonClickListener());
+
+        rotanticButton = (Button) view.findViewById(R.id.rotanticButton);
+        rotanticButton.setOnClickListener(new RotanticlockButtonClickListener());
+        rotcButton = (Button) view.findViewById(R.id.rotcButton);
+        rotcButton.setOnClickListener(new RotclockButtonClickListener());
+
         Bitmap bitmap = getBitmap();
+
+        transformed = bitmap;
+        rotoriginal = bitmap;
+
         setScannedImage(bitmap);
         doneButton = (Button) view.findViewById(R.id.doneButton);
         doneButton.setOnClickListener(new DoneButtonClickListener());
@@ -121,13 +134,14 @@ public class ResultFragment extends Fragment {
                 @Override
                 public void run() {
                     try {
-                        transformed = ((ScanActivity) getActivity()).getBWBitmap(original);
+                        transformed = ((ScanActivity) getActivity()).getBWBitmap(rotoriginal);
                     } catch (final OutOfMemoryError e) {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                transformed = original;
-                                scannedImageView.setImageBitmap(original);
+                                transformed = rotoriginal;
+
+                                scannedImageView.setImageBitmap(rotoriginal);
                                 e.printStackTrace();
                                 dismissDialog();
                                 onClick(v);
@@ -154,13 +168,14 @@ public class ResultFragment extends Fragment {
                 @Override
                 public void run() {
                     try {
-                        transformed = ((ScanActivity) getActivity()).getMagicColorBitmap(original);
+                        transformed = ((ScanActivity) getActivity()).getMagicColorBitmap(rotoriginal);
                     } catch (final OutOfMemoryError e) {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                transformed = original;
-                                scannedImageView.setImageBitmap(original);
+                                transformed = rotoriginal;
+
+                                scannedImageView.setImageBitmap(rotoriginal);
                                 e.printStackTrace();
                                 dismissDialog();
                                 onClick(v);
@@ -184,8 +199,9 @@ public class ResultFragment extends Fragment {
         public void onClick(View v) {
             try {
                 showProgressDialog(getResources().getString(R.string.applying_filter));
-                transformed = original;
-                scannedImageView.setImageBitmap(original);
+                transformed = rotoriginal;
+
+                scannedImageView.setImageBitmap(rotoriginal);
                 dismissDialog();
             } catch (OutOfMemoryError e) {
                 e.printStackTrace();
@@ -202,7 +218,52 @@ public class ResultFragment extends Fragment {
                 @Override
                 public void run() {
                     try {
-                        transformed = ((ScanActivity) getActivity()).getGrayBitmap(original);
+                        transformed = ((ScanActivity) getActivity()).getGrayBitmap(rotoriginal);
+                    } catch (final OutOfMemoryError e) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                transformed = rotoriginal;
+
+                                scannedImageView.setImageBitmap(rotoriginal);
+                                e.printStackTrace();
+                                dismissDialog();
+                                onClick(v);
+                            }
+                        });
+                    }
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            scannedImageView.setImageBitmap(transformed);
+                            dismissDialog();
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+
+    private class RotanticlockButtonClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(final View v) {
+            showProgressDialog(getResources().getString(R.string.applying_filter));
+            AsyncTask.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        //android.graphics.Matrix matrix = new android.graphics.Matrix();
+                        // matrix.postRotate(90);
+
+                        Bitmap imageViewBitmap=((android.graphics.drawable.BitmapDrawable)scannedImageView.getDrawable()).getBitmap();
+
+                        android.graphics.Matrix matrix = new android.graphics.Matrix();
+                        matrix.postRotate(-90);
+                        rotoriginal = Bitmap.createBitmap(rotoriginal, 0, 0, rotoriginal.getWidth(), rotoriginal.getHeight(), matrix, true);
+                        transformed = Bitmap.createBitmap(imageViewBitmap, 0, 0, imageViewBitmap.getWidth(), imageViewBitmap.getHeight(), matrix, true);
+
+                        //transformed = ((ScanActivity) getActivity()).getBWBitmap(original);
                     } catch (final OutOfMemoryError e) {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
@@ -226,6 +287,49 @@ public class ResultFragment extends Fragment {
             });
         }
     }
+
+
+
+    private class RotclockButtonClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(final View v) {
+            showProgressDialog(getResources().getString(R.string.applying_filter));
+            AsyncTask.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Bitmap imageViewBitmap=((android.graphics.drawable.BitmapDrawable)scannedImageView.getDrawable()).getBitmap();
+
+                        android.graphics.Matrix matrix = new android.graphics.Matrix();
+                        matrix.postRotate(90);
+                        rotoriginal = Bitmap.createBitmap(rotoriginal, 0, 0, rotoriginal.getWidth(), rotoriginal.getHeight(), matrix, true);
+                        transformed = Bitmap.createBitmap(imageViewBitmap, 0, 0, imageViewBitmap.getWidth(), imageViewBitmap.getHeight(), matrix, true);
+
+                    } catch (final OutOfMemoryError e) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                transformed = original;
+                                scannedImageView.setImageBitmap(original);
+                                e.printStackTrace();
+                                dismissDialog();
+                                onClick(v);
+                            }
+                        });
+                    }
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            scannedImageView.setImageBitmap(transformed);
+                            dismissDialog();
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+
 
     protected synchronized void showProgressDialog(String message) {
         if (progressDialogFragment != null && progressDialogFragment.isVisible()) {

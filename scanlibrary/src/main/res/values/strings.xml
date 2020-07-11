@@ -13,8 +13,13 @@
     <string name="applying_filter">Applying filter</string>
     <string name="low_memory">Low Memory</string>
     <string name="low_memory_message">Your phone is low on memory, you may feel some lags while editing images.</string>
-    <string name="b_and_w">B and W</string>
-    <string name="gray_mode">Gray Mode</string>
     <string name="magic_color">Magic color</string>
     <string name="original">Original</string>
+    <string name="rotate">Rotate</string>
+    <string name="b_amp_w"><![CDATA[b & w]]></string>
+    <string name="grey">Grey</string>
+    <string name="left">Left</string>
+    <string name="right">right</string>
+    <string name="org">Org</string>
+    <string name="magic">Magic</string>
 </resources>

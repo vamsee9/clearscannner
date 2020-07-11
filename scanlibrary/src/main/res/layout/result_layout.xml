@@ -18,7 +18,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_image"
-            android:text="@string/original"
+            android:text="@string/org"
             android:textColor="@android:color/white" />
 
         <Button
@@ -29,7 +29,7 @@
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_enhamce_image"
             android:singleLine="true"
-            android:text="@string/magic_color"
+            android:text="@string/magic"
             android:textColor="@android:color/white" />
 
         <Button
@@ -40,7 +40,7 @@
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_gray"
             android:singleLine="true"
-            android:text="@string/gray_mode"
+            android:text="@string/grey"
             android:textColor="@android:color/white" />
 
         <Button
@@ -51,33 +51,63 @@
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_black_and_white"
             android:singleLine="true"
-            android:text="@string/b_and_w"
+            android:text="@string/b_amp_w"
             android:textColor="@android:color/white" />
+
     </LinearLayout>
 
+    <Button
+        android:id="@+id/rotcButton"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="161dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/ic_rotc_button"
+        android:orientation="horizontal"
+        android:padding="@dimen/bottom_bar_padding" />
 
     <Button
         android:id="@+id/doneButton"
         android:layout_width="wrap_content"
         android:layout_height="75dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="161dp"
         android:layout_marginEnd="161dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
         android:drawableTop="@drawable/ic_baseline_done_24"
         android:orientation="horizontal"
         android:padding="@dimen/bottom_bar_padding" />
 
+    <Button
+        android:id="@+id/rotanticButton"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="161dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/ic_rotantic_button"
+        android:orientation="horizontal"
+        android:padding="@dimen/bottom_bar_padding" />
+
+
+
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/doneButton"
+        android:layout_width="384dp"
+        android:layout_height="573dp"
         android:layout_below="@id/topBar"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/scanPadding">
+        android:layout_margin="@dimen/scanPadding"
+        android:layout_marginStart="@dimen/scanPadding"
+        android:layout_marginTop="@dimen/scanPadding"
+        android:layout_marginEnd="@dimen/scanPadding"
+        android:layout_marginBottom="12dp">
 
         <ImageView
             android:id="@+id/scannedImage"

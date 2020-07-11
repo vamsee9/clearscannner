@@ -22,7 +22,8 @@ public class ScanConstants {
     public final static String SCANNED_RESULT = Environment
             .getExternalStorageDirectory().getPath() + "/scannedResult";
     public final static String IMAGE_PATH = Environment
-            .getExternalStorageDirectory().getPath() + "/scanSample";
+            .getExternalStorageDirectory().getPath()  + "/scanSample";
+
 
     //public final static String IMAGE_PATH = Environment.DIRECTORY_PICTURES + File.separator + "/scanSample";
 
