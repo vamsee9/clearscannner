@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#ffc4c2bc"
+        android:background="#071B30"
         android:orientation="horizontal"
         android:padding="15dp">
 
@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:src="@drawable/gallery" />
+            android:src="@drawable/ic_folder" />
 
         <ImageButton
             android:id="@+id/cameraButton"
@@ -29,7 +29,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:src="@drawable/camera" />
+            android:src="@drawable/ic_camera" />
     </LinearLayout>
 
 </RelativeLayout>

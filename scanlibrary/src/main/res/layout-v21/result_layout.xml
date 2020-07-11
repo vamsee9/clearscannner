@@ -70,30 +70,30 @@
 
         <Button
             android:id="@+id/rotanticButton"
-            android:layout_width="100dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_rotantic_button"
             android:singleLine="true"
-            android:text="@string/rotate"
+            android:text="@string/left"
             android:textColor="@android:color/white"
             tools:ignore="Suspicious0dp" />
 
         <Button
             android:id="@+id/rotcButton"
-            android:layout_width="100dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_rotc_button"
             android:singleLine="true"
-            android:text="@string/rotate"
+            android:text="@string/right"
             android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/modifier"
-            android:layout_width="100dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
@@ -104,7 +104,7 @@
 
         <Button
             android:id="@+id/doneButton"
-            android:layout_width="100dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"

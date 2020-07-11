@@ -22,4 +22,6 @@
     <string name="right">right</string>
     <string name="org">Org</string>
     <string name="magic">Magic</string>
+    <string name="orginal">orginal</string>
+    <string name="modifier">modifier</string>
 </resources>
