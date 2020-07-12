@@ -2,13 +2,13 @@ package com.opennxt.clearscanner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
+//import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
+//import android.graphics.Bitmap;
+//import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
+//import android.os.Environment;
+//import android.provider.MediaStore;
 import android.view.View;
 
 
@@ -16,14 +16,16 @@ import android.view.View;
 import com.scanlibrary.ScanActivity;
 import com.scanlibrary.ScanConstants;
 
-import java.io.IOException;
+//import java.io.IOException;
+
+import static com.opennxt.clearscanner.R.layout.pick_image_fragment;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(pick_image_fragment);
     }
 
     public void openCamera(View v)
