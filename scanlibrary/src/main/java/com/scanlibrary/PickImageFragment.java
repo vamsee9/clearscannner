@@ -53,6 +53,8 @@ public class PickImageFragment extends Fragment {
     }
 
     private void init() {
+
+
         cameraButton = (ImageButton) view.findViewById(R.id.cameraButton);
         cameraButton.setOnClickListener(new CameraButtonClickListener());
         galleryButton = (ImageButton) view.findViewById(R.id.selectButton);
@@ -134,7 +136,7 @@ public class PickImageFragment extends Fragment {
 
     private File createImageFile() {
         clearTempImages();
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new
+        String timeStamp = new SimpleDateFormat("DD-MM-YYYY_HH:mms:s").format(new
                 Date());
         File file = new File(ScanConstants.IMAGE_PATH, "IMG_" + timeStamp +
                 ".jpg");
