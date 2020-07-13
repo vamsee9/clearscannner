@@ -24,8 +24,6 @@ public class Utils {
         return Uri.parse(path);
     }
 
-
-
     public static Bitmap getBitmap(Context context, Uri uri) throws IOException {
         Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
         return bitmap;
