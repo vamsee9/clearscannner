@@ -76,7 +76,7 @@ public class ResultFragment extends Fragment {
         Uri uri = getUri();
         try {
             original = Utils.getBitmap(getActivity(), uri);
-            //getActivity().getContentResolver().delete(uri, null, null);
+            getActivity().getContentResolver().delete(uri, null, null);
             return original;
         } catch (IOException e) {
             e.printStackTrace();

@@ -26,7 +26,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 import java.util.UUID;
 
 
@@ -74,7 +73,7 @@ public class PickImageFragment extends Fragment {
 
     private void clearTempImages() {
         try {
-            File tempFolder = new File(ScanConstants.IMAGE_PATH);
+            File tempFolder = new File(getActivity().getExternalFilesDir(null).getPath() + "/ClearScanner");
             for (File f : tempFolder.listFiles())
                 f.delete();
         } catch (Exception e) {
@@ -145,7 +144,7 @@ public class PickImageFragment extends Fragment {
         clearTempImages();
         String timeStamp = new SimpleDateFormat("DD-MM-YYYY_HH:mm:ss").format(new
                 Date());
-        File file = new File(Objects.requireNonNull(getActivity().getExternalFilesDir(null)).getAbsolutePath() + "/ClearScanner", "IMG_" + timeStamp + ".jpg");
+        File file = new File(getActivity().getExternalFilesDir(null).getPath() + "/ClearScanner", "IMG_" + timeStamp + ".jpg");
         fileUri = Uri.fromFile(file);
         return file;
     }

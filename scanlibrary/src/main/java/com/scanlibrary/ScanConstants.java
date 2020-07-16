@@ -23,8 +23,7 @@ public class ScanConstants {
 
     public final static String SCANNED_RESULT = "scannedResult";
 
-    public final static String IMAGE_PATH = Environment
-            .getExternalStorageDirectory().getPath() + "/ClearScanner";
+    //public final static String IMAGE_PATH = Environment.getExternalStorageDirectory().getPath() + "/ClearScanner";
 
     public final static String SELECTED_BITMAP = "selectedBitmap";
     public final static String SCAN_MORE = "ScanMore";

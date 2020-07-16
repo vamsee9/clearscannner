@@ -18,6 +18,9 @@ public class Utils {
     }
 
     public static Uri getUri(Context context, Bitmap bitmap) {
+
+
+
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "IMG", null);

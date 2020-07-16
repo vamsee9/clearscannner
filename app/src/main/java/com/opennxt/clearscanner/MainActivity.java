@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(pick_image_fragment);
 
+
+
         //fucking permission Dispatcher
         ImageButton buttonOpenCamera = findViewById(R.id.cameraButton);
         buttonOpenCamera.setOnClickListener(new View.OnClickListener() {
