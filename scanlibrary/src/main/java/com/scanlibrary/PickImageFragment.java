@@ -2,6 +2,8 @@ package com.scanlibrary;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
@@ -11,6 +13,7 @@ import androidx.exifinterface.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import androidx.core.content.FileProvider;
 import android.util.Log;
@@ -23,6 +26,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
+import java.util.UUID;
 
 
 /**
@@ -35,6 +40,7 @@ public class PickImageFragment extends Fragment {
     private ImageButton galleryButton;
     private Uri fileUri;
     private IScanner scanner;
+    //private PickImageFragment mContext = this;
 
     @Override
     public void onAttach(Activity activity) {
@@ -134,12 +140,12 @@ public class PickImageFragment extends Fragment {
         startActivityForResult(cameraIntent, ScanConstants.START_CAMERA_REQUEST_CODE);
     }
 
+
     private File createImageFile() {
         clearTempImages();
-        String timeStamp = new SimpleDateFormat("DD-MM-YYYY_HH:mms:s").format(new
+        String timeStamp = new SimpleDateFormat("DD-MM-YYYY_HH:mm:ss").format(new
                 Date());
-        File file = new File(ScanConstants.IMAGE_PATH, "IMG_" + timeStamp +
-                ".jpg");
+        File file = new File(Objects.requireNonNull(getActivity().getExternalFilesDir(null)).getAbsolutePath() + "/ClearScanner", "IMG_" + timeStamp + ".jpg");
         fileUri = Uri.fromFile(file);
         return file;
     }

@@ -8,6 +8,8 @@ import java.io.File;
 /**
  * Created by jhansi on 15/03/15.
  */
+
+
 public class ScanConstants {
 
     public final static int PICKFILE_REQUEST_CODE = 1;
@@ -20,13 +22,11 @@ public class ScanConstants {
     public final static int OPEN_MEDIA = 5;
 
     public final static String SCANNED_RESULT = "scannedResult";
-    public final static String IMAGE_PATH = Environment.getExternalStorageDirectory().getPath() + "/ClearScanner";
 
-
-    //public final static String IMAGE_PATH = Environment.DIRECTORY_PICTURES + File.separator + "/scanSample";
+    public final static String IMAGE_PATH = Environment
+            .getExternalStorageDirectory().getPath() + "/ClearScanner";
 
     public final static String SELECTED_BITMAP = "selectedBitmap";
     public final static String SCAN_MORE = "ScanMore";
-
 
 }
