@@ -1,5 +1,6 @@
 package com.scanlibrary;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ContentResolver;
@@ -26,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 
@@ -50,6 +52,7 @@ public class PickImageFragment extends Fragment {
         this.scanner = (IScanner) activity;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.pick_image_fragment, null);
@@ -60,9 +63,9 @@ public class PickImageFragment extends Fragment {
     private void init() {
 
 
-        cameraButton = (ImageButton) view.findViewById(R.id.cameraButton);
+        cameraButton = view.findViewById(R.id.cameraButton);
         cameraButton.setOnClickListener(new CameraButtonClickListener());
-        galleryButton = (ImageButton) view.findViewById(R.id.selectButton);
+        galleryButton = view.findViewById(R.id.selectButton);
         galleryButton.setOnClickListener(new GalleryClickListener());
         if (isIntentPreferenceSet()) {
             handleIntentPreference();
@@ -73,9 +76,9 @@ public class PickImageFragment extends Fragment {
 
     private void clearTempImages() {
         try {
-            File tempFolder = new File(getActivity().getExternalFilesDir(null).getPath() + "/ClearScanner");
-            for (File f : tempFolder.listFiles())
-                f.delete();
+            File tempFolder = new File(Objects.requireNonNull(getActivity().getExternalFilesDir(null)).getPath() + "/ClearScanner");
+            Objects.requireNonNull(tempFolder.listFiles());
+            // f.delete();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,8 +99,7 @@ public class PickImageFragment extends Fragment {
     }
 
     private int getIntentPreference() {
-        int preference = getArguments().getInt(ScanConstants.OPEN_INTENT_PREFERENCE, 0);
-        return preference;
+        return getArguments().getInt(ScanConstants.OPEN_INTENT_PREFERENCE, 0);
     }
 
 
@@ -125,7 +127,7 @@ public class PickImageFragment extends Fragment {
     public void openCamera() {
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         File file = createImageFile();
-        boolean isDirectoryCreated = file.getParentFile().mkdirs();
+        boolean isDirectoryCreated = Objects.requireNonNull(file.getParentFile()).mkdirs();
         Log.d("", "openCamera: isDirectoryCreated: " + isDirectoryCreated);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             Uri tempFileUri = FileProvider.getUriForFile(getActivity().getApplicationContext(),
@@ -142,9 +144,9 @@ public class PickImageFragment extends Fragment {
 
     private File createImageFile() {
         clearTempImages();
-        String timeStamp = new SimpleDateFormat("DD-MM-YYYY_HH:mm:ss").format(new
+        @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("dd-MM-YYYY HH.mm.ss").format(new
                 Date());
-        File file = new File(getActivity().getExternalFilesDir(null).getPath() + "/ClearScanner", "IMG_" + timeStamp + ".jpg");
+        File file = new File(Objects.requireNonNull(getActivity().getExternalFilesDir(null)).getPath() + "/ClearScanner", "IMG_" + timeStamp + ".jpg");
         fileUri = Uri.fromFile(file);
         return file;
     }
@@ -184,15 +186,15 @@ public class PickImageFragment extends Fragment {
     private Bitmap getBitmap(Uri selectedimg) throws IOException {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 3;
-        AssetFileDescriptor fileDescriptor = null;
+        AssetFileDescriptor fileDescriptor;
         fileDescriptor =
                 getActivity().getContentResolver().openAssetFileDescriptor(selectedimg, "r");
 
         Matrix matrix = new Matrix();
 
-        ExifInterface exif = null;     //Since API Level 5
+        ExifInterface exif;     //Since API Level 5
         try {
-            exif = new ExifInterface(selectedimg.getPath());
+            exif = new ExifInterface(Objects.requireNonNull(selectedimg.getPath()));
             int rotation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
             int rotationInDegrees = exifToDegrees(rotation);
             if (rotation != 0f) {
@@ -203,6 +205,7 @@ public class PickImageFragment extends Fragment {
         }
 
 
+        assert fileDescriptor != null;
         Bitmap original
                 = BitmapFactory.decodeFileDescriptor(
                 fileDescriptor.getFileDescriptor(), null, options);

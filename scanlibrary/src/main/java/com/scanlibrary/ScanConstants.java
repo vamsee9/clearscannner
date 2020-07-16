@@ -5,10 +5,6 @@ import android.provider.MediaStore;
 
 import java.io.File;
 
-/**
- * Created by jhansi on 15/03/15.
- */
-
 
 public class ScanConstants {
 
@@ -26,6 +22,5 @@ public class ScanConstants {
     //public final static String IMAGE_PATH = Environment.getExternalStorageDirectory().getPath() + "/ClearScanner";
 
     public final static String SELECTED_BITMAP = "selectedBitmap";
-    public final static String SCAN_MORE = "ScanMore";
 
 }
