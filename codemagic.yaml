@@ -1,0 +1,15 @@
+# Check out https://docs.codemagic.io/yaml/building-a-native-android-app/ for more information
+
+workflows:
+
+    android-app:
+
+        name: ClearScanner
+
+        scripts:
+
+            - ./gradlew assembleDebug
+
+        artifacts:
+
+            - build/outputs/app/apk/ClearScanner.apk
